@@ -40,7 +40,7 @@ A lightweight and interactive terminal-based file manager built with modern C++1
 ├── main.cpp
 ├── h_files/
 │   └── FileManager.h
-├── cpp_files/
+├── src/
 │   └── FileManager.cpp
 ├── README.md
 ```
