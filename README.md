@@ -39,8 +39,10 @@ A lightweight and interactive terminal-based file manager built with modern C++1
 ```
 ├── main.cpp
 ├── h_files/
+│   └── FileEntry.h
 │   └── FileManager.h
 ├── src/
+│   └── FileEntry.cpp
 │   └── FileManager.cpp
 ├── README.md
 ```
