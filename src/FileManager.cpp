@@ -116,7 +116,7 @@ void FileManager::move(const std::string &src, const std::string &dest)
     try
     {
         fs::path srcPath = fs::path(src).is_absolute() ? fs::path(src) : currentPath / src;
-        fs::path destPath = fs::path(dest).is_absolute() ? fs::path(dest) : currentPath / src;
+        fs::path destPath = fs::path(dest).is_absolute() ? fs::path(dest) : currentPath / dest;
 
         if (!fs::exists(srcPath))
         {
