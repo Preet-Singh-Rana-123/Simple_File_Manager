@@ -100,7 +100,22 @@ void FileManager::copy(const std::string &src, const std::string &dest)
         if (fs::exists(destPath) && fs::is_directory(destPath))
         {
             destPath /= srcPath.filename();
-        }
+        }else{
+			fs::path destParent = destPath.parent_path();
+			if(!destParent.exists() && !destParent.is_directory()){
+				std::cout << "Error: Destination parent directory does not exist.\n";
+			}
+		}
+
+		if (fs::is_directory(srcPath)){
+			fs::path canonicalsrc = fs::canonical(srcPath);
+			fs::path canonicaldest = fs::weakly_canonical(destPath);
+
+			if(canonicaldest.string().starts_with(canonicalsrc)){
+				std::cout<<"Error: Cannot move directory into itself or its subdirectory.\n"<<std::endl;
+				return;
+			}
+		}
 
         fs::copy(srcPath, destPath, fs::copy_options::recursive | fs::copy_options::overwrite_existing);
         std::cout << "Copied successfully!\n";
@@ -127,7 +142,22 @@ void FileManager::move(const std::string &src, const std::string &dest)
         if (fs::exists(destPath) && fs::is_directory(destPath))
         {
             destPath /= srcPath.filename();
-        }
+        }else{
+			fs::path destParent = destPath.parent_path();
+			if(!destParent.exists() && !destParent.is_directory()){
+				std::cout << "Error: Destination parent directory does not exist.\n";
+			}
+		}
+
+		if (fs::is_directory(srcPath)){
+			fs::path canonicalsrc = fs::canonical(srcPath);
+			fs::path canonicaldest = fs::weakly_canonical(destPath);
+
+			if(canonicaldest.string().starts_with(canonicalsrc)){
+				std::cout<<"Error: Cannot move directory into itself or its subdirectory.\n"<<std::endl;
+				return;
+			}
+		}
 
         fs::rename(srcPath, destPath);
         std::cout << "Moved successfully!\n";
